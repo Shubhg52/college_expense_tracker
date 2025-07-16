@@ -1,12 +1,24 @@
 # College Expense Tracker
 
-A simple web app that allows users to add, view, and delete their daily expenses.
+A simple web application that allows students to manage their daily expenses.  
+Built using:
 
-## Tech Stack
 - HTML, CSS, JavaScript (Frontend)
-- Node.js + Express (Backend)
-- data.json (for storage)
+- Node.js and Express (Backend)
+- data.json (as a local storage)
+
+## Features
+- Add expenses by description, category, and amount
+- View a list of expenses
+- Automatically calculates total
+- Delete items using a bin icon
 
 ## How to Run
-1. Go to `backend/` folder and run `node server.js`
-2. Open `frontend/index.html` in a browser
+
+1. Go to the `backend/` folder
+2. Run `npm install` to install dependencies
+3. Start server with `node server.js`
+4. Open `frontend/index.html` in your browser
+
+## Author
+Shubham Sharma
