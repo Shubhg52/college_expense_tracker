@@ -1,5 +1,3 @@
-# college_expense_tracker
- Simple web app for college students to manage daily expenses.
 # College Expense Tracker
 
 A simple web app that allows users to add, view, and delete their daily expenses.
