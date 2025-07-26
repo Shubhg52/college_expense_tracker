@@ -1,0 +1,439 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Playfair Display', serif;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+
+/* Dark mode already defined, so no change needed */
+
+.container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  margin: 5% auto;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* fixed height */
+  overflow-y: auto;
+}
+
+
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  animation: pop 1.5s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, select, button {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+button {
+  background: #4a90e2;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #357ab7;
+}
+
+ul {
+  list-style: none;
+  margin-top: 2rem;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+li {
+  background: #f9f9f9;
+  margin: 0.5rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-icon {
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  z-index: 3;
+  transition: transform 0.3s ease;
+   object-fit: contain;
+}
+
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  color: silver;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#total {
+  flex-shrink: 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0;
+  background-color: inherit;
+  border-top: 1px solid #ccc;
+}
+
+/* Rotating Circle */
+.animated-bg-circle {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: rotate 20s linear infinite;
+  z-index: 1;
+  border: 2px dashed #fff;
+
+}
+.animated-bg-circle.circle-clicked {
+  border: 3px solid rgba(0, 123, 255, 0.9); /* bright blue */
+  box-shadow: 0 0 30px rgba(0, 123, 255, 0.3);
+}
+
+@keyframes rotate {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.35; /* transparent and faded */
+}
+
+/* Top-left triangle pair (white with soft 3D shadow) */
+.top-left.pair1 {
+  border-left: 80px solid transparent;
+  border-bottom: 80px solid rgba(255, 255, 255, 0.7);
+  top: 0;
+  left: 0;
+  box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.top-left.pair2 {
+  border-left: 80px solid transparent;
+  border-bottom: 80px solid rgba(255, 255, 255, 0.5);
+  top: 20px;
+  left: 20px;
+  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Bottom-right triangle pair */
+.bottom-right.pair1 {
+  border-right: 80px solid transparent;
+  border-top: 80px solid rgba(255, 255, 255, 0.7);
+  bottom: 0;
+  right: 0;
+  box-shadow: 4px -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-right.pair2 {
+  border-right: 80px solid transparent;
+  border-top: 80px solid rgba(255, 255, 255, 0.5);
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 3px -3px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Background decorative triangles */
+.triangle.deco {
+  border-left: 40px solid transparent;
+  border-bottom: 40px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Icon Movement */
+@keyframes bounce {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, -20px); }
+}
+/* Circle Click Toggle Style */
+.circle-clicked {
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+body.light-mode {
+  background: linear-gradient(135deg, #f1d3b9, #d4a2f1); /* soft peach and lavender */
+  color: #2d1f47; /* deep elegant text color */
+}
+
+body.light-mode .container {
+  background-color: #fffdf7;
+  border: 2px solid #cba135; /* gold border */
+  box-shadow: 0 6px 25px rgba(75, 0, 130, 0.2); /* purple glow */
+}
+
+body.light-mode h1.animated-title {
+  color: #4b0082; /* royal purple */
+  text-shadow: 1px 1px 2px #cba135; /* gold shine */
+}
+
+body.light-mode #total {
+  color: #3e0066; /* deep indigo */
+}
+
+body.light-mode button {
+  background-color: transparent;
+  color: #2c0247;
+  
+  box-shadow: 0 3px 10px rgba(75, 0, 130, 0.3);
+}
+
+body.light-mode button:hover {
+  background-color: #2a004d; /* deeper royal purple */
+  border-color: #ffcc00;     /* gold accent */
+  color: white;
+}
+
+
+/* Light mode expense list item */
+body.light-mode li {
+  background: #f6f0ea; /* warm beige */
+  color: #2d1f47;
+}
+
+/* Scrollbar styling for luxury feel */
+body.light-mode ul::-webkit-scrollbar {
+  background: #e0d6cc;
+}
+body.light-mode ul::-webkit-scrollbar-thumb {
+  background: #bfa46f; /* muted gold */
+}
+body.light-mode .theme-toggle img {
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
+  background-color: #fdf6e3;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.1),
+    inset 0 -1px 3px rgba(255, 255, 255, 0.2);
+}
+
+
+/* Dark Mode */
+body.dark-mode {
+  background: linear-gradient(145deg, #1e1e1e, #2b2b2b);
+  color: #f0f0f0;
+}
+
+.container.dark-mode {
+  background: #2e2e2e;
+  color: #f0f0f0;
+}
+
+/* 🌑 3D-style container for theme toggle button in dark mode */
+body.dark-mode .theme-toggle {
+  background: #1c1c1c;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow:
+    0 4px 8px rgba(255, 255, 255, 0.15),     /* outer white glow */
+    0 2px 4px rgba(255, 255, 255, 0.2),       /* soft highlight */
+    inset 0 -2px 4px rgba(255, 255, 255, 0.08), /* inner depth */
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);        /* inner bottom depth */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+body.dark-mode .theme-toggle:hover {
+  transform: scale(1.05);
+  box-shadow:
+    0 6px 12px rgba(255, 255, 255, 0.25),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Light mode styles for expense items (default) */
+body.light-mode li {
+  background: #f9f9f9;
+  color: #000;
+}
+
+/* Dark mode styles */
+body.dark-mode li {
+  background: #444;
+  color: #fff;
+}
+
+body.dark-mode .delete-btn {
+  color: #ffffff;
+}
+body.dark-mode ul::-webkit-scrollbar {
+  background: #333;
+}
+body.dark-mode ul::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.2);
+}
+
+/* Smooth transition for theme */
+body, .container, input, select, button, li {
+  transition: background 0.5s, color 0.5s;
+}
+
+
+body.dark-mode .theme-toggle {
+  color: #f9f9f9;
+}
+
+.theme-toggle svg {
+  pointer-events: none;
+}
+/* Add to your CSS */
+.icon-flip {
+  animation: flip 0.6s ease;
+}
+
+@keyframes flip {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.filters select,
+.filters input[type="date"] {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+#theme-icon.icon-flip {
+  animation: flipIcon 0.6s ease-in-out;
+}
+
+@keyframes flipIcon {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+#expense-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+#expense-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+#expense-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+#expense-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#expense-list {
+  padding-bottom: 1rem;
+}
+li {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+#expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+@media (max-width: 400px) {
+  .filters {
+    flex-direction: column;
+  }
+}
+button:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+body.dark-mode #total,
+body.dark-mode .animated-title {
+  color: #cba135; /* soft royal gold */
+
+}
+
