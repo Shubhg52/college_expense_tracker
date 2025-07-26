@@ -81,5 +81,5 @@ All media assets used are locally stored or generated for demonstration.
 
 🙋 Author
 Shubham Sharma
-LinkedIn: 
-GitHub:
+LinkedIn:www.linkedin.com/in/shubham-sharma-10b512375
+GitHub:https://github.com/Shubhg52/college_expense_tracker
