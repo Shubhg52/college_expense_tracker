@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>College Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body class="light-mode">
+
+  <!-- Triangle Pairs -->
+  <div class="triangle top-left pair1"></div>
+  <div class="triangle top-left pair2"></div>
+  <div class="triangle bottom-right pair1"></div>
+  <div class="triangle bottom-right pair2"></div>
+
+  <!-- Decorative Triangles -->
+  <div class="triangle deco" style="top: 20%; left: 10%;"></div>
+  <div class="triangle deco" style="top: 60%; left: 5%;"></div>
+  <div class="triangle deco" style="top: 30%; left: 80%;"></div>
+
+  <!-- Rotating Circle -->
+  <div class="animated-bg-circle" id="circle"></div>
+  <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+  <img id="themeIcon" src="icons/moon.png" alt="Toggle theme" width="26" height="26" />
+</button>
+
+
+
+
+
+  <!-- Main App -->
+  <div class="container">
+    <h1 class="animated-title">College Expense Tracker</h1>
+    <form id="expense-form">
+      <input type="text" id="description" placeholder="Expense Name" required />
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="food">Food</option>
+        <option value="transport">Transport</option>
+        <option value="wifi">WiFi</option>
+        <option value="rent">Rent</option>
+        <option value="books">Books</option>
+        <option value="travel">Travel</option>
+        <option value="other">Other</option>
+      </select>
+      <input type="number" id="amount" placeholder="Amount (€)" required />
+      <button type="submit">Add Expense</button>
+    </form>
+    <div class="filters">
+  <select id="filter-category">
+    <option value="all">All Categories</option>
+    <option value="food">Food</option>
+    <option value="transport">Transport</option>
+    <option value="wifi">WiFi</option>
+    <option value="rent">Rent</option>
+    <option value="books">Books</option>
+    <option value="travel">Travel</option>
+    <option value="other">Other</option>
+    
+  </select>
+
+  <input type="date" id="filter-date" />
+</div>
+<ul id="expense-list"></ul>
+    <div id="total">Total: €0</div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+</body>
+</html>
